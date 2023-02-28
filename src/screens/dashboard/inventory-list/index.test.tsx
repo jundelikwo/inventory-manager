@@ -4,20 +4,16 @@
 
 import 'react-native';
 import React from 'react';
-import Navigation from './navigation';
+import InventoryList from './index';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import {NavigationContainer} from '@react-navigation/native';
+import {navigationObj} from 'src/utilities/types';
 
-describe('Navigation', () => {
+describe('InventoryList', () => {
   it('renders correctly', () => {
     const tree = renderer
-      .create(
-        <NavigationContainer>
-          <Navigation />
-        </NavigationContainer>,
-      )
+      .create(<InventoryList navigation={navigationObj} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

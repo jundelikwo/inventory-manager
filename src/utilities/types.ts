@@ -13,6 +13,21 @@ export interface NavigationProp {
   };
 }
 
+export const navigationObj: NavigationProp = {
+  goBack: () => null,
+  push: () => null,
+  getParam: () => null,
+  navigate: () => null,
+  replace: () => null,
+  pop: () => null,
+  dispatch: () => null,
+  state: {
+    routeName: '',
+    key: '',
+    params: '',
+  },
+};
+
 export type StopLoadingType = () => void;
 
 export interface ScreenProp {

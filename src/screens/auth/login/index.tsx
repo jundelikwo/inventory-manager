@@ -7,8 +7,10 @@ import Input from 'src/components/input';
 import {InputErrorType, ScreenProp} from 'src/utilities/types';
 import {rEmail} from 'src/utilities/regex';
 import styles from './styles';
+import {useAuth} from 'src/context/auth';
 
-export function Login({navigation}: ScreenProp) {
+export function Login(_props: ScreenProp) {
+  const {login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<InputErrorType>(new Map());
@@ -29,10 +31,8 @@ export function Login({navigation}: ScreenProp) {
       return;
     }
 
-    const data = {email, password};
-    console.log('data', data);
-    navigation.navigate('Home');
-  }, [email, password, navigation]);
+    login(email, password);
+  }, [email, password, login]);
 
   return (
     <SafeAreaView style={styles.container}>
