@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
   formTop: {
     marginTop: 24,
   },
+  logout: {
+    fontWeight: '500',
+    color: Colors.ROSE_08,
+  },
 });
 
 export default styles;
