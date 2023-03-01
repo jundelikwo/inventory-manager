@@ -75,3 +75,22 @@ BackIcon.defaultProps = {
   height: 27,
   width: 27,
 };
+
+export function PlusIcon({width, height}: IconsProps) {
+  return (
+    <Svg width={width} height={height} viewBox="0 0 21 21" fill="none">
+      <Path
+        d="M10.5001 4.2915V15.9582M4.66675 10.1248H16.3334"
+        stroke="#ffffff"
+        strokeWidth="1.66667"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+PlusIcon.defaultProps = {
+  height: 21,
+  width: 21,
+};

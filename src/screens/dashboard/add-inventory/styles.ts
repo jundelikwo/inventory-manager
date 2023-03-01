@@ -12,21 +12,6 @@ const styles = StyleSheet.create({
   formTop: {
     marginTop: 24,
   },
-  logout: {
-    fontWeight: '500',
-    color: Colors.ROSE_08,
-  },
-  add: {
-    right: 20,
-    width: 72,
-    bottom: 50,
-    height: 72,
-    borderRadius: 40,
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: Colors.BLUE_07,
-  },
 });
 
 export default styles;

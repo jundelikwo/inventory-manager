@@ -7,11 +7,12 @@ import {
   View,
 } from 'react-native';
 import Header from 'src/components/header';
+import {PlusIcon} from 'src/components/icons';
 import {useAuth} from 'src/context/auth';
 import {ScreenProp} from 'src/utilities/types';
 import styles from './styles';
 
-export function InventoryList(_props: ScreenProp) {
+export function InventoryList({navigation}: ScreenProp) {
   const {logout} = useAuth();
   return (
     <SafeAreaView style={styles.container}>
@@ -28,6 +29,12 @@ export function InventoryList(_props: ScreenProp) {
           <Text>InventoryList</Text>
         </View>
       </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate('AddInventory')}
+        style={styles.add}>
+        <PlusIcon width={36} height={36} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

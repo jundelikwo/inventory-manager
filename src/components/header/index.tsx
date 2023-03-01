@@ -30,7 +30,7 @@ export function Header({title, back, right, onBackPress}: HeaderProps) {
         {title}
       </Text>
       {right ? right : null}
-      {right && back ? <View style={styles.empty} /> : null}
+      {!right && back ? <View style={styles.empty} /> : null}
     </View>
   );
 }

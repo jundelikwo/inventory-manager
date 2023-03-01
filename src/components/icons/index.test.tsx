@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {BackIcon, EyeIcon, EyeOffIcon} from './index';
+import {BackIcon, EyeIcon, EyeOffIcon, PlusIcon} from './index';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -21,6 +21,11 @@ describe('Icons', () => {
 
   it('BackIcon renders correctly', () => {
     const tree = renderer.create(<BackIcon />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('PlusIcon renders correctly', () => {
+    const tree = renderer.create(<PlusIcon />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
