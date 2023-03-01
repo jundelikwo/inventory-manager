@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
 import React, {
   createContext,
   useEffect,
@@ -23,6 +24,7 @@ export interface ItemType extends ItemPayloadType {
 interface UserContextType {
   items: ItemType[];
   clearItems: () => void;
+  deleteItem: (uuid: string) => void;
   addItem: (item: ItemPayloadType) => Promise<string>;
   updateItem: (item: ItemType) => Promise<string>;
 }
@@ -30,6 +32,7 @@ interface UserContextType {
 const initialContext: UserContextType = {
   items: [],
   clearItems: () => null,
+  deleteItem: () => null,
   addItem: () => new Promise(resolve => resolve('Done')),
   updateItem: () => new Promise(resolve => resolve('Done')),
 };
@@ -39,6 +42,7 @@ export const InventoryContext = createContext<UserContextType>(initialContext);
 export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
   const [items, setItems] = useState<ItemType[]>([]);
   const {user} = useAuth();
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -125,13 +129,27 @@ export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
     [items],
   );
 
+  const deleteItem = useCallback(
+    (uuid: string) => {
+      setItems(state => {
+        const newState = state.filter(item => item.uuid !== uuid);
+
+        AsyncStorage.setItem('inventories', JSON.stringify(newState));
+        return newState;
+      });
+      navigation.goBack();
+    },
+    [navigation],
+  );
+
   const clearItems = useCallback(() => {
     setItems([]);
     AsyncStorage.removeItem('inventories');
   }, []);
 
   return (
-    <InventoryContext.Provider value={{items, addItem, clearItems, updateItem}}>
+    <InventoryContext.Provider
+      value={{items, addItem, clearItems, deleteItem, updateItem}}>
       {children}
     </InventoryContext.Provider>
   );

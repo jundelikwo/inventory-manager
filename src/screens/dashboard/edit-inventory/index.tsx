@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {Alert, SafeAreaView, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {showMessage} from 'react-native-flash-message';
 import Button from 'src/components/button';
@@ -12,7 +12,7 @@ import {formatNumberInput, moneyToNumber} from 'src/utilities/formatter';
 
 export function EditInventory({navigation, route}: ScreenProp) {
   const paramItem = route.params as ItemType;
-  const {updateItem} = useInventory();
+  const {deleteItem, updateItem} = useInventory();
   const [name, setName] = useState(paramItem.name);
   const [totalStock, setTotalStock] = useState(paramItem.totalStock);
   const [price, setPrice] = useState(formatNumberInput(paramItem.price));
@@ -70,6 +70,27 @@ export function EditInventory({navigation, route}: ScreenProp) {
       });
     }
   }, [name, totalStock, description, price, paramItem, updateItem]);
+
+  const handleDelete = useCallback(() => {
+    Alert.alert('Delete Item', 'Are you sure you want to delete the item', [
+      {
+        text: 'No',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: () => {
+          deleteItem(paramItem.uuid);
+          showMessage({
+            message: 'Success',
+            description: 'Item deleted successfully',
+            type: 'success',
+          });
+        },
+        style: 'default',
+      },
+    ]);
+  }, [deleteItem, paramItem.uuid]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -164,6 +185,7 @@ export function EditInventory({navigation, route}: ScreenProp) {
             />
           </View>
           <Button text="Update" onPress={handleSubmit} style={styles.formTop} />
+          <Button text="Delete" onPress={handleDelete} style={styles.formTop} />
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
