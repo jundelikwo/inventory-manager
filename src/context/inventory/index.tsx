@@ -21,7 +21,7 @@ export interface ItemType extends ItemPayloadType {
   user: string;
 }
 
-interface UserContextType {
+export interface UserContextType {
   items: ItemType[];
   clearItems: () => void;
   deleteItem: (uuid: string) => void;
@@ -29,7 +29,7 @@ interface UserContextType {
   updateItem: (item: ItemType) => Promise<string>;
 }
 
-const initialContext: UserContextType = {
+export const initialInventoryContext: UserContextType = {
   items: [],
   clearItems: () => null,
   deleteItem: () => null,
@@ -37,7 +37,9 @@ const initialContext: UserContextType = {
   updateItem: () => new Promise(resolve => resolve('Done')),
 };
 
-export const InventoryContext = createContext<UserContextType>(initialContext);
+export const InventoryContext = createContext<UserContextType>(
+  initialInventoryContext,
+);
 
 export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
   const [items, setItems] = useState<ItemType[]>([]);

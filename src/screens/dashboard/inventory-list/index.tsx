@@ -28,7 +28,10 @@ export function InventoryList({navigation}: ScreenProp) {
       <Header
         title="Inventory Listing"
         right={
-          <TouchableOpacity activeOpacity={0.7} onPress={handleLogout}>
+          <TouchableOpacity
+            testID="logout-btn"
+            activeOpacity={0.7}
+            onPress={handleLogout}>
             <Text style={styles.logout}>Logout</Text>
           </TouchableOpacity>
         }
@@ -38,10 +41,11 @@ export function InventoryList({navigation}: ScreenProp) {
         bounces={false}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item, index) => item.uuid + index}
-        renderItem={({item}) => (
+        keyExtractor={item => item.uuid}
+        renderItem={({item, index}) => (
           <TouchableOpacity
             activeOpacity={0.7}
+            testID={`item-btn-${index}`}
             onPress={() => navigation.navigate('EditInventory', item)}
             style={styles.item}>
             <View style={styles.itemBody}>
@@ -53,9 +57,15 @@ export function InventoryList({navigation}: ScreenProp) {
             </Text>
           </TouchableOpacity>
         )}
+        ListEmptyComponent={
+          <Text testID="empty" style={styles.empty}>
+            No Items Found
+          </Text>
+        }
       />
       <TouchableOpacity
         activeOpacity={0.7}
+        testID="add-btn"
         onPress={() => navigation.navigate('AddInventory')}
         style={styles.add}>
         <PlusIcon width={36} height={36} />

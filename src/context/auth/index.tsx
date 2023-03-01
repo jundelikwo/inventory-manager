@@ -19,13 +19,13 @@ interface UserContextType {
   login: (email: string, password: string) => void;
 }
 
-const initialContext: UserContextType = {
+export const initialAuthContext: UserContextType = {
   user: undefined,
   login: () => null,
   logout: () => null,
 };
 
-export const AuthContext = createContext<UserContextType>(initialContext);
+export const AuthContext = createContext<UserContextType>(initialAuthContext);
 
 export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const [user, setUser] = useState<UserType>();

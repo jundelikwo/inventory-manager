@@ -185,7 +185,12 @@ export function EditInventory({navigation, route}: ScreenProp) {
             />
           </View>
           <Button text="Update" onPress={handleSubmit} style={styles.formTop} />
-          <Button text="Delete" onPress={handleDelete} style={styles.formTop} />
+          <Button
+            testID="delete-btn"
+            text="Delete"
+            onPress={handleDelete}
+            style={styles.formTop}
+          />
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>

@@ -54,6 +54,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: Colors.SLATE_10,
   },
+  empty: {
+    fontSize: 16,
+    fontWeight: '500',
+    marginVertical: 50,
+    textAlign: 'center',
+    color: Colors.SLATE_10,
+  },
 });
 
 export default styles;

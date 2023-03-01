@@ -10,6 +10,7 @@ import {
 import styles from './styles';
 
 export interface ButtonProps {
+  testID?: string;
   text?: string;
   onPress?: () => void;
   style?: StyleProp<ViewStyle>;
@@ -20,6 +21,7 @@ export interface ButtonProps {
 
 export function Button({
   text,
+  testID,
   icon,
   onPress,
   disabled,
@@ -28,6 +30,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <TouchableOpacity
+      testID={testID}
       activeOpacity={0.7}
       disabled={disabled}
       onPress={onPress}
