@@ -22,11 +22,13 @@ interface ItemType extends ItemPayloadType {
 
 interface UserContextType {
   items: ItemType[];
+  clearItems: () => void;
   addItem: (item: ItemPayloadType) => Promise<string>;
 }
 
 const initialContext: UserContextType = {
   items: [],
+  clearItems: () => null,
   addItem: () => new Promise(resolve => resolve('Done')),
 };
 
@@ -70,7 +72,7 @@ export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
         setItems(state => {
           const newState = [...state, formattedItem];
 
-          AsyncStorage.setItem('user', JSON.stringify(newState));
+          AsyncStorage.setItem('inventories', JSON.stringify(newState));
           return newState;
         });
         resolve('Item added successfully');
@@ -79,8 +81,13 @@ export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
     [items, user?.uuid],
   );
 
+  const clearItems = useCallback(() => {
+    setItems([]);
+    AsyncStorage.removeItem('inventories');
+  }, []);
+
   return (
-    <InventoryContext.Provider value={{items, addItem}}>
+    <InventoryContext.Provider value={{items, addItem, clearItems}}>
       {children}
     </InventoryContext.Provider>
   );
