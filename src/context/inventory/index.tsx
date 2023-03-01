@@ -37,7 +37,6 @@ export const InventoryContext = createContext<UserContextType>(initialContext);
 export const InventoryProvider = ({children}: {children: React.ReactNode}) => {
   const [items, setItems] = useState<ItemType[]>([]);
   const {user} = useAuth();
-  console.log('items', items);
 
   useEffect(() => {
     (async () => {

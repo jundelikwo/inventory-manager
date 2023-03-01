@@ -7,7 +7,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
   },
   content: {
-    margin: 20,
+    paddingTop: 4,
+    paddingBottom: 100,
+    paddingHorizontal: 20,
   },
   formTop: {
     marginTop: 24,
@@ -26,6 +28,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.BLUE_07,
+  },
+  item: {
+    paddingVertical: 16,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: Colors.SLATE_02,
+  },
+  itemBody: {
+    flex: 1,
+    marginRight: 8,
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: Colors.SLATE_10,
+  },
+  stock: {
+    fontSize: 14,
+    color: Colors.SLATE_10,
+  },
+  price: {
+    fontSize: 14,
+    maxWidth: '40%',
+    fontWeight: '500',
+    color: Colors.SLATE_10,
   },
 });
 
