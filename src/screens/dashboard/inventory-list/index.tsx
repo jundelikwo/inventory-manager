@@ -40,7 +40,10 @@ export function InventoryList({navigation}: ScreenProp) {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => item.uuid + index}
         renderItem={({item}) => (
-          <TouchableOpacity activeOpacity={0.7} style={styles.item}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.navigate('EditInventory', item)}
+            style={styles.item}>
             <View style={styles.itemBody}>
               <Text style={styles.name}>{item.name}</Text>
               <Text style={styles.stock}>Total Stock: {item.totalStock}</Text>
