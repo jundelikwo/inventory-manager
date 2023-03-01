@@ -13,7 +13,21 @@ import {navigationObj} from 'src/utilities/types';
 describe('EditInventory', () => {
   it('renders correctly', () => {
     const tree = renderer
-      .create(<EditInventory navigation={navigationObj} />)
+      .create(
+        <EditInventory
+          navigation={navigationObj}
+          route={{
+            params: {
+              name: '',
+              totalStock: '',
+              price: '',
+              description: '',
+              uuid: '',
+              user: '',
+            },
+          }}
+        />,
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
